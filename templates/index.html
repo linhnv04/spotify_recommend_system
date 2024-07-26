@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Spotify Playlist Generator</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Spotify track recommenders</h1>
+        <p>Enter your favorite track here</p>
+        <input id='song_name' type="text" placeholder="Search tracks">
+        <button onclick="redirectToSearchPage()">Choose for me!</button>
+    </div>
+    <script>
+        document.getElementById('song_name').addEventListener('keyup', function(event) {
+            event.preventDefault();
+            if (event.keyCode == 13){
+                redirectToSearchPage();
+            }
+        })
+        function redirectToSearchPage() {
+            const query = document.getElementById("song_name").value.trim(); // trim whitespace
+            if (query) {
+                // Redirect to another URL with the search query as a parameter
+                window.location.href = `/recommend?song_name=${encodeURIComponent(query)}`;
+            } else {
+                alert("Please enter a song name");
+            }
+        }
+    </script>
+</body>
+</html>
